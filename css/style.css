@@ -1,0 +1,74 @@
+.container {
+    width: 700px;
+    margin: 0 auto;
+}
+
+h1, .warning, .lang {
+    text-align: center;
+}
+textarea {
+    display: block;
+    width: 690px;
+    height: 200px;
+    margin: 10px auto 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: #444444;
+}
+.keyboard {
+    border: 2px solid #000000;
+    border-radius: 5px;
+    background: #888888;
+    padding: 4px;
+    width: 100%;
+}
+.keyboard--row {
+    display: flex;
+    width: 100%;
+}
+.btn {
+    margin: 4px;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background: #444444;
+    color: #ffffff;
+    outline: none;
+}
+.btn-double {
+    width: 90px;
+}
+.btn-black {
+    background: #000000;
+}
+.btn-space {
+    width: 330px;
+}
+.btn:hover {
+    cursor: pointer;
+    color: #000000;
+    background: rgba(127,255,212, .4);
+}
+.warning, .lang {
+    margin: 20px;
+    font-size: 20px;
+}
+
+/* Animate */
+@keyframes border-circle {
+    from {
+        border-radius: 5px;
+        color: #000000;
+        background: rgba(127,255,212, .4);
+    }
+    to {
+        border-radius: 25px;
+        color: #000000;
+        background: rgba(127,255,212, 1);
+    }
+}
+.transform-btn {
+    animation-name: border-circle;
+    animation-duration: 1.5s;
+}
