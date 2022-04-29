@@ -1,7 +1,11 @@
 import { data } from './translate.js';
-const foo = 'string';
-console.log(data);
-console.log('\\')
+
+window.addEventListener('DOMContentLoaded', () => {
+    const foo = 'string';
+    console.log(data);
+    console.log('\\')
+});
+
 
 
 
