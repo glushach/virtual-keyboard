@@ -3,11 +3,16 @@ import { Render } from './render.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     if (!localStorage.getItem('langKeyBoard')) localStorage.setItem('langKeyBoard', 'en');
+    if (!localStorage.getItem('capsLock')) localStorage.setItem('capsLock', 'unshift');
 
-    new Render(data, localStorage.getItem('langKeyBoard'), 'unshift').render();
+    new Render(
+        data,
+        localStorage.getItem('langKeyBoard'),
+        localStorage.getItem('capsLock')
+    ).render();
     handlerClick();
 
-    function runOnKeys(...codes) {
+    function setLang(...codes) {
         let pressed = new Set();
 
         document.addEventListener('keydown', (event) => {
@@ -19,7 +24,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            pressed.clear(); // чтобы избежать "залипания" клавиши -- обнуляем статус всех клавиш, пусть нажимает всё заново
 
             // Перерисовываем язык
             if (localStorage.getItem('langKeyBoard') === 'en') {
@@ -27,8 +31,15 @@ window.addEventListener('DOMContentLoaded', () => {
             } else {
                 localStorage.setItem('langKeyBoard', 'en');
             }
-            new Render(data, localStorage.getItem('langKeyBoard'), 'unshift').render();
+
+            new Render(
+                data,
+                localStorage.getItem('langKeyBoard'),
+                localStorage.getItem('capsLock')
+            ).render();
+            setAnimateLang(pressed);
             handlerClick();
+            pressed.clear(); // чтобы избежать "залипания" клавиши -- обнуляем статус всех клавиш, пусть нажимает всё заново
         });
 
         document.addEventListener('keyup', (event) => {
@@ -37,11 +48,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    runOnKeys(
+    setLang(
         "ControlLeft",
         "ShiftLeft"
     );
-    runOnKeys(
+    setLang(
         "ControlRight",
         "ShiftRight"
     );
@@ -49,9 +60,49 @@ window.addEventListener('DOMContentLoaded', () => {
     function handlerClick() {
         const keyboard = document.querySelector('.keyboard');
         keyboard.addEventListener('click', (e) => {
-            console.log('Event', e)
+           // Здесь будут обрабатываться все клики, но не комбинации клавиш
+            console.log(e)
         });
     }
+
+    function setAnimateLang(pressed) {
+
+        if (pressed.size === 2) { // добавить анимацию
+            if (pressed.has('ControlLeft')) {
+                const controlLeft = document.querySelector('#ControlLeft');
+                const shiftLeft = document.querySelector('#ShiftLeft');
+                controlLeft.classList.add('transform-btn');
+                shiftLeft.classList.add('transform-btn');
+            } else {
+                const controlRight = document.querySelector('#ControlRight');
+                const shiftRight = document.querySelector('#ShiftRight');
+                controlRight.classList.add('transform-btn');
+                shiftRight.classList.add('transform-btn');
+            }
+        }
+    }
+    
+    
+    
+    /////////////////////////////////////////////////////////////
+    function setCapsLock() {
+        document.addEventListener('keydown', (event) => {
+            // Перерисовываем язык
+            if (localStorage.getItem('capsLock') === 'unshift') {
+                localStorage.setItem('capsLock', 'shift');
+            } else {
+                localStorage.setItem('capsLock', 'unshift');
+            }
+
+            new Render(
+                data,
+                localStorage.getItem('langKeyBoard'),
+                localStorage.getItem('capsLock')
+            ).render();
+            console.log('Event', event)
+        });
+    }
+    // setCapsLock();
 });
 
 

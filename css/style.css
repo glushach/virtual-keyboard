@@ -35,6 +35,7 @@ textarea {
     background: #444444;
     color: #ffffff;
     outline: none;
+    transition: all .8s;
 }
 .btn-double {
     width: 90px;
@@ -70,5 +71,10 @@ textarea {
 }
 .transform-btn {
     animation-name: border-circle;
-    animation-duration: 1.5s;
+    animation-duration: 0.8s;
+}
+.capslock {
+    border-radius: 5px;
+    color: #000000;
+    background: rgba(127,255,212, .4);
 }

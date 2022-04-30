@@ -68,7 +68,7 @@ export class Render {
                 <button class="btn btn-double btn-black">Enter</button>
             </div>
             <div class="keyboard--row">
-                <button class="btn btn-double btn-black">Shift</button>
+                <button class="btn btn-double btn-black" id="ShiftLeft">Shift</button>
                 <button class="btn">${this.obj[this.lang][this.case].z}</button>
                 <button class="btn">${this.obj[this.lang][this.case].x}</button>
                 <button class="btn">${this.obj[this.lang][this.case].c}</button>
@@ -80,18 +80,18 @@ export class Render {
                 <button class="btn">${this.obj[this.lang][this.case]['.']}</button>
                 <button class="btn">${this.obj[this.lang][this.case]['/']}</button>
                 <button class="btn btn-black">▲</button>
-                <button class="btn btn-double btn-black">Shift</button>
+                <button class="btn btn-double btn-black" id="ShiftRight">Shift</button>
             </div>
             <div class="keyboard--row">
-                <button class="btn btn-black transform-btn">Ctrl</button>
+                <button class="btn btn-black" id="ControlLeft">Ctrl</button>
                 <button class="btn btn-black">Win</button>
                 <button class="btn btn-black">Alt</button>
-                <button class="btn btn-space transform-btn"></button>
+                <button class="btn btn-space"></button>
                 <button class="btn btn-black">Alt</button>
                 <button class="btn btn-black">◀</button>
                 <button class="btn btn-black">▼</button>
                 <button class="btn btn-black">▶</button>
-                <button class="btn btn-black">Ctrl</button>
+                <button class="btn btn-black" id="ControlRight">Ctrl</button>
             </div>
         </div>
         <div class="warning">Клавиатура создана для OS Windows</div>
