@@ -1,9 +1,10 @@
 import { data } from './translate.js';
+import { Render } from './render.js';
 
 window.addEventListener('DOMContentLoaded', () => {
-    const foo = 'string';
-    console.log(data);
-    console.log('\\')
+    if (!localStorage.getItem('langKeyBoard')) localStorage.setItem('langKeyBoard', 'en');
+
+    new Render(data, localStorage.getItem('langKeyBoard'), 'unshift').render();
 });
 
 
