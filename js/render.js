@@ -20,18 +20,18 @@ export class Render {
         <div class="keyboard">
             <div class="keyboard--row">
                 <button class="btn">${this.obj[this.lang][this.case]['`']}</button>
-                <button class="btn">1</button>
-                <button class="btn">2</button>
-                <button class="btn">3</button>
-                <button class="btn">4</button>
-                <button class="btn">5</button>
-                <button class="btn">6</button>
-                <button class="btn">7</button>
-                <button class="btn">8</button>
-                <button class="btn">9</button>
-                <button class="btn">0</button>
-                <button class="btn">-</button>
-                <button class="btn">=</button>
+                <button class="btn">${this.obj[this.lang][this.case][1]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][2]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][3]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][4]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][5]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][6]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][7]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][8]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][9]}</button>
+                <button class="btn">${this.obj[this.lang][this.case][0]}</button>
+                <button class="btn">${this.obj[this.lang][this.case]['-']}</button>
+                <button class="btn">${this.obj[this.lang][this.case]['=']}</button>
                 <button class="btn btn-double btn-black">Backspace</button>
             </div>
             <div class="keyboard--row">
@@ -52,7 +52,7 @@ export class Render {
                 <button class="btn btn-black">Del</button>
             </div>
             <div class="keyboard--row">
-                <button class="btn btn-double btn-black">CapsLock</button>
+                <button class="btn btn-double btn-black" id="CapsLock">CapsLock</button>
                 <button class="btn">${this.obj[this.lang][this.case].a}</button>
                 <button class="btn">${this.obj[this.lang][this.case].s}</button>
                 <button class="btn">${this.obj[this.lang][this.case].d}</button>
@@ -83,7 +83,7 @@ export class Render {
             </div>
             <div class="keyboard--row">
                 <button class="btn btn-black" id="ControlLeft">Ctrl</button>
-                <button class="btn btn-black">Win</button>
+<!--                <button class="btn btn-black">Win</button>-->
                 <button class="btn btn-black">Alt</button>
                 <button class="btn btn-space"></button>
                 <button class="btn btn-black">Alt</button>

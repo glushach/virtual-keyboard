@@ -1,6 +1,7 @@
 .container {
     width: 700px;
     margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
 }
 
 h1, .warning, .lang {
@@ -44,7 +45,7 @@ textarea {
     background: #000000;
 }
 .btn-space {
-    width: 330px;
+    width: 370px;
 }
 .btn:hover {
     cursor: pointer;
@@ -74,7 +75,7 @@ textarea {
     animation-duration: 0.8s;
 }
 .capslock {
-    border-radius: 5px;
+    border-radius: 25px;
     color: #000000;
-    background: rgba(127,255,212, .4);
+    background: rgba(127,255,212, 1);
 }
