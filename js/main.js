@@ -16,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let pressed = new Set();
 
         document.addEventListener('keydown', (event) => {
+            document.querySelector('textarea').focus();
             pressed.add(event.code);
 
             for (let code of codes) { // все ли клавиши из набора нажаты?
@@ -87,22 +88,24 @@ window.addEventListener('DOMContentLoaded', () => {
     /////////////////////////////////////////////////////////////
     function setCapsLock() {
         document.addEventListener('keydown', (event) => {
-            // Перерисовываем язык
-            if (localStorage.getItem('capsLock') === 'unshift') {
-                localStorage.setItem('capsLock', 'shift');
-            } else {
-                localStorage.setItem('capsLock', 'unshift');
-            }
-
-            new Render(
-                data,
-                localStorage.getItem('langKeyBoard'),
-                localStorage.getItem('capsLock')
-            ).render();
             console.log('Event', event)
+            if (event.key === 'CapsLock') { // Из-за всплытия событий обрабатывает функциоеальную кнопку
+                // Перерисовываем язык
+                if (localStorage.getItem('capsLock') === 'unshift') {
+                    localStorage.setItem('capsLock', 'shift');
+                } else {
+                    localStorage.setItem('capsLock', 'unshift');
+                }
+
+                new Render(
+                    data,
+                    localStorage.getItem('langKeyBoard'),
+                    localStorage.getItem('capsLock')
+                ).render();
+            }
         });
     }
-    // setCapsLock();
+    setCapsLock();
 });
 
 

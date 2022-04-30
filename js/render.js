@@ -62,7 +62,6 @@ export class Render {
                 <button class="btn">${this.obj[this.lang][this.case].j}</button>
                 <button class="btn">${this.obj[this.lang][this.case].k}</button>
                 <button class="btn">${this.obj[this.lang][this.case].l}</button>
-                <button class="btn">${this.obj[this.lang][this.case].a}</button>
                 <button class="btn">${this.obj[this.lang][this.case][';']}</button>
                 <button class="btn">${this.obj[this.lang][this.case]['\'']}</button>
                 <button class="btn btn-double btn-black">Enter</button>
