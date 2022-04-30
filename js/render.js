@@ -7,6 +7,11 @@ export class Render {
 
   render() {
     console.log(this.obj[this.lang][this.case]);
+
+    if (document.body.children.length > 1) { // очистка от предыдущей верстки
+      document.body.removeChild(document.body.firstElementChild);
+    }
+
     return document.body.insertAdjacentHTML(
       'afterbegin',
       `   <div class="container">
@@ -93,7 +98,7 @@ export class Render {
         <div class="lang">Для переключения языка используй комбинацию <strong>Ctrl + Shift</strong></div>
     </div>`
     );
-  }
+  } // end method render
 }
 
 // npx eslint js/render.js - чтобы проверить на соответсвие из консоли
