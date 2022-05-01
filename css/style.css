@@ -74,7 +74,7 @@ textarea {
     animation-name: border-circle;
     animation-duration: 0.8s;
 }
-.capslock {
+.active {
     border-radius: 25px;
     color: #000000;
     background: rgba(127,255,212, 1);

@@ -1,166 +1,91 @@
 import { data } from './translate.js';
 import { Render } from './render.js';
+import { setLang } from './change-lang.js';
+import { initKeyboard } from './change-lang.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     if (!localStorage.getItem('langKeyBoard')) localStorage.setItem('langKeyBoard', 'en');
     if (localStorage.getItem('register') !== 'unshift') localStorage.setItem('register', 'unshift');
-
-    new Render(
-        data,
-        localStorage.getItem('langKeyBoard'),
-        localStorage.getItem('register')
-    ).render();
-    handlerClick();
-
-    function setLang(...codes) {
-        let pressed = new Set();
-
-        document.addEventListener('keydown', (event) => {
-            document.querySelector('textarea').focus();
-            pressed.add(event.code);
-
-            for (let code of codes) { // все ли клавиши из набора нажаты?
-                if (!pressed.has(code)) {
-                    return;
-                }
-            }
-
-
-            // Перерисовываем язык
-            if (localStorage.getItem('langKeyBoard') === 'en') {
-                localStorage.setItem('langKeyBoard', 'ru');
-            } else {
-                localStorage.setItem('langKeyBoard', 'en');
-            }
-
-            new Render(
-                data,
-                localStorage.getItem('langKeyBoard'),
-                localStorage.getItem('register')
-            ).render();
-            setAnimateLang(pressed);
-            handlerClick();
-            pressed.clear(); // чтобы избежать "залипания" клавиши -- обнуляем статус всех клавиш, пусть нажимает всё заново
-        });
-
-        document.addEventListener('keyup', (event) => {
-            pressed.delete(event.code);
-        });
-
-    }
-
+    document.addEventListener("keydown", keyDownHandler);
+    document.addEventListener("keyup", keyUpHandler);
+    document.addEventListener("mousedown", mouseDownHandler);
+    document.addEventListener("mouseup", mouseUpHandler);
     setLang(
         "ControlLeft",
-        "ShiftLeft"
+        "AltLeft"
     );
     setLang(
         "ControlRight",
-        "ShiftRight"
+        "AltRight"
     );
+    initKeyboard(); // формирование верстки при первой загрузки страници
 
 
-    
-    
-    
-    /////////////////////////////////////////////////////////////
-    function setCapsLock() {
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'CapsLock') { // Из-за всплытия событий обрабатывает функциоеальную кнопку
-                // Перерисовываем язык
-                if (localStorage.getItem('register') === 'unshift') {
-                    localStorage.setItem('register', 'capslock');
-                } else if (localStorage.getItem('register') === 'capslock') {
-                    localStorage.setItem('register', 'unshift');
-                }
-                // else {
-                //     localStorage.setItem('register', 'unshift');
-                // }
-
-                new Render(
-                    data,
-                    localStorage.getItem('langKeyBoard'),
-                    localStorage.getItem('register')
-                ).render();
-                handlerClick();
-                document.querySelector('textarea').focus();
-                // добавляем класс активности
-                if (localStorage.getItem('register') === 'capslock') {
-                    document.querySelector('#CapsLock').classList.add('capslock');
-                }
+    function keyDownHandler(e) {
+        document.querySelector('textarea').focus();
+        e.preventDefault();
+        if (e.key === 'CapsLock') { // capsLock
+            if (localStorage.getItem('register') === 'unshift') {
+                localStorage.setItem('register', 'capslock');
+            } else if (localStorage.getItem('register') === 'capslock') {
+                localStorage.setItem('register', 'unshift');
             }
-        });
+            initKeyboard();
+            if (localStorage.getItem('register') === 'capslock') {
+                setAnimatedSingle('CapsLock');
+            }
+        } // and capsLock
+
+
+        if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { // shift
+            if (
+                localStorage.getItem('register') === 'shift' ||
+                localStorage.getItem('register') === 'capslock_shift'
+            ) { return null; }
+
+            if (localStorage.getItem('register') === 'unshift') {
+                localStorage.setItem('register', 'shift');
+                initKeyboard();
+            } else if (localStorage.getItem('register') === 'capslock') {
+                localStorage.setItem('register', 'capslock_shift');
+                initKeyboard();
+                setAnimationDouble('CapsLock', e.code); // добавить класс у capslock и shift
+            }
+        } // and shift
+
     }
-    setCapsLock();
-    ///////////////////////////////////////////////////////////////////
-    function setShift() {
-        document.addEventListener('keydown', (event) => {
-            if(event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-                if (localStorage.getItem('register') === 'shift') return null;
-                if (localStorage.getItem('register') === 'unshift') {
-                    localStorage.setItem('register', 'shift');
-                }
-                // else if (localStorage.getItem('register') === 'capslock') {
-                //     localStorage.setItem('register', 'unshift');
-                // }
+    function keyUpHandler(e) {
+        document.querySelector('textarea').focus();
+        e.preventDefault();
+        if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { // shift
+            if (localStorage.getItem('register') === 'shift') {
+                localStorage.setItem('register', 'unshift');
+                initKeyboard();
+                //setAnimatedSingle(e.code);
+            } else if (localStorage.getItem('register') === 'capslock_shift') {
+                localStorage.setItem('register', 'capslock');
+                initKeyboard();
+                setAnimatedSingle('CapsLock'); // вернуть класс у capslock
             }
-            new Render(
-                data,
-                localStorage.getItem('langKeyBoard'),
-                localStorage.getItem('register')
-            ).render();
-            handlerClick();
-            setAnimatedSingle(event.code);
-        });
-
-        document.addEventListener('keyup', (event) => {
-            if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-                if (localStorage.getItem('register') === 'shift') {
-                    localStorage.setItem('register', 'unshift');
-
-                    new Render(
-                        data,
-                        localStorage.getItem('langKeyBoard'),
-                        localStorage.getItem('register')
-                    ).render();
-                    handlerClick();
-                    setAnimatedSingle(event.code);
-                }
-            }
-        });
+        } // and shift
     }
-    setShift();
-
+    function mouseDownHandler(e) {
+        document.querySelector('textarea').focus();
+        e.preventDefault();
+    }
+    function mouseUpHandler(e) {
+        document.querySelector('textarea').focus();
+        e.preventDefault();
+    }
 }); // end DOMContentLoaded
 
-function setAnimateLang(pressed) {
-    if (pressed.size === 2) { // добавить анимацию
-        if (pressed.has('ControlLeft')) {
-            const controlLeft = document.querySelector('#ControlLeft');
-            const shiftLeft = document.querySelector('#ShiftLeft');
-            controlLeft.classList.add('transform-btn');
-            shiftLeft.classList.add('transform-btn');
-        } else {
-            const controlRight = document.querySelector('#ControlRight');
-            const shiftRight = document.querySelector('#ShiftRight');
-            controlRight.classList.add('transform-btn');
-            shiftRight.classList.add('transform-btn');
-        }
-    }
-}
+
 function setAnimatedSingle(selector) {
-    document.querySelector(`#${selector}`).classList.toggle('transform-btn');
+    document.querySelector(`#${selector}`).classList.add('active');
 }
-
-
-function handlerClick() {
-    const keyboard = document.querySelector('.keyboard');
-    keyboard.addEventListener('click', (e) => {
-        // Здесь будут обрабатываться все клики, но не комбинации клавиш
-        console.log(e)
-    });
+function setAnimationDouble(selector1, selector2) {
+    document.querySelector(`#${selector1}`).classList.add('active');
+    document.querySelector(`#${selector2}`).classList.add('active');
 }
-
-
-
 // npx eslint js/main.js - чтобы проверить на соответсвие из консоли
 // npx eslint js/main.js --fix - автоматически из консоли фиксить ошибки в данном файле
