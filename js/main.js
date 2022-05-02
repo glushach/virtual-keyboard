@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
   );
   initKeyboard(); // формирование верстки при первой загрузки страници
 
-  let string = ''; // FOR TEXTAREA
+  let string = []; // FOR TEXTAREA
   function keyDownHandler(e) {
     e.preventDefault();
     if (e.key === 'CapsLock') { // capsLock
@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { // shift
       if (
         localStorage.getItem('register') === 'shift'
-                || localStorage.getItem('register') === 'capslock_shift'
+        || localStorage.getItem('register') === 'capslock_shift'
       ) { return null; }
 
       if (localStorage.getItem('register') === 'unshift') {
@@ -62,17 +62,28 @@ window.addEventListener('DOMContentLoaded', () => {
 
     let lang = localStorage.getItem('langKeyBoard');
     let register = localStorage.getItem('register');
+
     let key = (e.key).toLowerCase();
+    let value = document.querySelector('textarea').value;
     const start = document.querySelector('textarea').selectionStart;
-    console.log('Start', start)
 
     if (data[lang][register][key]) {
-      // string.split(' ').splice(0, start, data[lang][register][key]).join(''); ПОДУМАТЬ????????????????????????
-      document.querySelector('textarea').value = string;
-    } else if (e.key === 'Enter') {
-      string += '\n';
-    } else if (e.key === 'Tab') {
-      string += '   ';
+      if (start >= 0 && start <= value.length) {
+        document.querySelector('textarea').value = value.slice(0, start) + data[lang][register][key] + value.slice(start, value.length),
+        document.querySelector('textarea').selectionStart = start + data[lang][register][key].length,
+        document.querySelector('textarea').selectionEnd =
+        start + data[lang][register][key].length;
+      }
+    } else if (key === 'backspace') {
+      start > 0 && start <= value.length && (value = value.slice(0, start - 1) + value.slice(start, value.length),
+      document.querySelector('textarea').value = value,
+      document.querySelector('textarea').selectionStart = start - 1,
+      document.querySelector('textarea').selectionEnd = start - 1);
+    } else if (key === 'delete') {
+      start >= 0 && start <= value.length - 1 && (value = value.slice(0, start) + value.slice(start + 1, value.length),
+      document.querySelector('textarea').value = value,
+      document.querySelector('textarea').selectionStart = start,
+      document.querySelector('textarea').selectionEnd = start);
     }
   }
   function keyUpHandler(e) {
