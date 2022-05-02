@@ -60,10 +60,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const lang = localStorage.getItem('langKeyBoard');
     const register = localStorage.getItem('register');
 
-    const key = (e.key).toLowerCase(); // very important
+    const key = e.code // very important
     let  value = document.querySelector('textarea').value; // very important
     const start = document.querySelector('textarea').selectionStart;
-    console.log('KEY', e.code)
 
     if (data[lang][register][key]) {
       if (start >= 0 && start <= value.length) {
@@ -72,13 +71,13 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('textarea').selectionStart = start + data[lang][register][key].length,
         document.querySelector('textarea').selectionEnd = start + data[lang][register][key].length;
       }
-    } else if (e.code.toLowerCase() === 'backspace') {
+    } else if (key === 'Backspace') {
       start > 0 && start <= value
         .length && (value = value.slice(0, start - 1) + value.slice(start, value.length),
       document.querySelector('textarea').value = value,
       document.querySelector('textarea').selectionStart = start - 1,
       document.querySelector('textarea').selectionEnd = start - 1);
-    } else if (e.code.toLowerCase() === 'delete') {
+    } else if (key === 'Delete') {
       start >= 0 && start <= value.length - 1
       && (value = value.slice(0, start) + value.slice(start + 1, value.length),
       document.querySelector('textarea').value = value,
