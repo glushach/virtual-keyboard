@@ -1,4 +1,4 @@
-import { data } from './translate.js';
+import data from './translate.js';
 import { setLang, initKeyboard } from './change-lang.js';
 
 import { setAnimatedSingle, setAnimationDouble } from './animate.js';
@@ -60,9 +60,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const lang = localStorage.getItem('langKeyBoard');
     const register = localStorage.getItem('register');
 
-    const key = (e.key).toLowerCase();
-    let { value } = document.querySelector('textarea');
+    const key = (e.key).toLowerCase(); // very important
+    let  value = document.querySelector('textarea').value; // very important
     const start = document.querySelector('textarea').selectionStart;
+    console.log('KEY', e.code)
 
     if (data[lang][register][key]) {
       if (start >= 0 && start <= value.length) {
@@ -71,13 +72,13 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('textarea').selectionStart = start + data[lang][register][key].length,
         document.querySelector('textarea').selectionEnd = start + data[lang][register][key].length;
       }
-    } else if (key === 'backspace') {
+    } else if (e.code.toLowerCase() === 'backspace') {
       start > 0 && start <= value
         .length && (value = value.slice(0, start - 1) + value.slice(start, value.length),
       document.querySelector('textarea').value = value,
       document.querySelector('textarea').selectionStart = start - 1,
       document.querySelector('textarea').selectionEnd = start - 1);
-    } else if (key === 'delete') {
+    } else if (e.code.toLowerCase() === 'delete') {
       start >= 0 && start <= value.length - 1
       && (value = value.slice(0, start) + value.slice(start + 1, value.length),
       document.querySelector('textarea').value = value,
@@ -118,3 +119,4 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // npx eslint js/main.js - чтобы проверить на соответсвие из консоли
 // npx eslint js/main.js --fix - автоматически из консоли фиксить ошибки в данном файле
+// npx eslint --fix

@@ -1,5 +1,5 @@
 import Render from './render.js';
-import { data } from './translate.js';
+import data from './translate.js';
 
 // Только комбинация CtrlLeft + AltLeft и CtrlRight + AltRight
 export function initKeyboard() {

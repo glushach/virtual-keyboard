@@ -1,4 +1,4 @@
-export const data = {
+const data = {
   en: {
     unshift: {
       '`': '`',
@@ -54,7 +54,7 @@ export const data = {
       arrowright: '▶',
       enter: '\n',
       tab: '    ',
-      ' ': ' '
+      ' ': ' ',
     },
     shift: {
       '`': '~',
@@ -131,7 +131,7 @@ export const data = {
       '"': '"',
       '<': '<',
       '>': '>',
-      '?': '?'
+      '?': '?',
     },
     capslock: {
       '`': '`',
@@ -187,7 +187,7 @@ export const data = {
       arrowright: '▶',
       enter: '\n',
       tab: '    ',
-      ' ': ' '
+      ' ': ' ',
     },
     capslock_shift: {
       '`': '~',
@@ -264,8 +264,8 @@ export const data = {
       '"': '"',
       '<': '<',
       '>': '>',
-      '?': '?'
-    }
+      '?': '?',
+    },
   },
   ru: {
     unshift: {
@@ -322,7 +322,7 @@ export const data = {
       arrowright: '▶',
       enter: '\n',
       tab: '    ',
-      ' ': ' '
+      ' ': ' ',
     },
     shift: {
       '`': 'Ё',
@@ -399,7 +399,7 @@ export const data = {
       '"': 'Э',
       '<': 'Б',
       '>': 'Ю',
-      '?': ','
+      '?': ',',
     },
     capslock: {
       '`': 'Ё',
@@ -455,7 +455,7 @@ export const data = {
       arrowright: '▶',
       enter: '\n',
       tab: '    ',
-      ' ': ' '
+      ' ': ' ',
     },
     capslock_shift: {
       '`': 'ё',
@@ -533,10 +533,12 @@ export const data = {
       '"': 'э',
       '<': 'б',
       '>': 'ю',
-      '?': ','
-    }
-  }
+      '?': ',',
+    },
+  },
 };
+
+export default data;
 
 // npx eslint js/translate.js - чтобы проверить на соответсвие из консоли
 
