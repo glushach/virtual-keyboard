@@ -6,7 +6,7 @@ export function initKeyboard() {
   new Render(
     data,
     localStorage.getItem('langKeyBoard'),
-    localStorage.getItem('register')
+    localStorage.getItem('register'),
   ).render();
 }
 
@@ -32,12 +32,12 @@ function setAnimateLang(pressed) {
 }
 
 export function setLang(...codes) {
-  let pressed = new Set();
+  const pressed = new Set();
   document.addEventListener('keyup', (event) => {
     pressed.add(event.code);
-    /* eslint-disable-next-line */
-    for (let code of codes) { // все ли клавиши из набора нажаты?
-      if (!pressed.has(code)) {
+
+    for (let i = 0; i < codes.length; i += 1) {
+      if (!pressed.has(codes[i])) { // все ли клавиши из набора нажаты?
         return;
       }
     }
@@ -61,3 +61,4 @@ export function setLang(...codes) {
 
 // npx eslint js/change-lang.js
 // npx eslint js/change-lang.js --fix
+// npx eslint --fix
