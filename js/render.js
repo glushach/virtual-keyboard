@@ -1,4 +1,4 @@
-export class Render {
+export default class Render {
   constructor(obj, lang, toCase) {
     this.obj = obj;
     this.lang = lang;

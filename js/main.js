@@ -1,8 +1,7 @@
 import { data } from './translate.js';
-import { setLang } from './change-lang.js';
-import { initKeyboard } from './change-lang.js';
-import { setAnimatedSingle } from './animate.js';
-import { setAnimationDouble } from './animate.js';
+import { setLang, initKeyboard } from './change-lang.js';
+
+import { setAnimatedSingle, setAnimationDouble } from './animate.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   document.body.insertAdjacentHTML(
@@ -13,17 +12,17 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="keyboard-wrap"></div>
             <div class="warning">Клавиатура создана для OS Windows</div>
             <div class="lang">Для переключения языка используй левую или правую комбинацию <strong>Ctrl + Alt</strong></div>
-        </div>`
+        </div>`,
   );
   if (!localStorage.getItem('langKeyBoard')) localStorage.setItem('langKeyBoard', 'en');
   if (localStorage.getItem('register') !== 'unshift') localStorage.setItem('register', 'unshift');
   setLang(
     'ControlLeft',
-    'AltLeft'
+    'AltLeft',
   );
   setLang(
     'ControlRight',
-    'AltRight'
+    'AltRight',
   );
   initKeyboard(); // формирование верстки при первой загрузки страници
 
@@ -58,11 +57,11 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     } // and shift
 
-    let lang = localStorage.getItem('langKeyBoard');
-    let register = localStorage.getItem('register');
+    const lang = localStorage.getItem('langKeyBoard');
+    const register = localStorage.getItem('register');
 
-    let key = (e.key).toLowerCase();
-    let value = document.querySelector('textarea').value;
+    const key = (e.key).toLowerCase();
+    let { value } = document.querySelector('textarea');
     const start = document.querySelector('textarea').selectionStart;
 
     if (data[lang][register][key]) {
