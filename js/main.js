@@ -72,18 +72,21 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('textarea').selectionEnd = start + data[lang][register][key].length;
       }
     } else if (key === 'Backspace') {
-      start > 0 && start <= val
-        .length && (val = val.slice(0, start - 1) + val.slice(start, val.length),
-      document.querySelector('textarea').value = val,
-      document.querySelector('textarea').selectionStart = start - 1,
-      document.querySelector('textarea').selectionEnd = start - 1);
+      if (start > 0 && start <= val.length) {
+        val = val.slice(0, start - 1) + val.slice(start, val.length);
+        document.querySelector('textarea').value = val;
+        document.querySelector('textarea').selectionStart = start - 1;
+        document.querySelector('textarea').selectionEnd = start - 1;
+      }
     } else if (key === 'Delete') {
-      start >= 0 && start <= val.length - 1
-      && (val = val.slice(0, start) + val.slice(start + 1, val.length),
-      document.querySelector('textarea').value = val,
-      document.querySelector('textarea').selectionStart = start,
-      document.querySelector('textarea').selectionEnd = start);
+      if (start >= 0 && start <= val.length - 1) {
+        val = val.slice(0, start) + val.slice(start + 1, val.length);
+        document.querySelector('textarea').value = val;
+        document.querySelector('textarea').selectionStart = start;
+        document.querySelector('textarea').selectionEnd = start;
+      }
     }
+    return null;
   }
   document.addEventListener('keydown', keyDownHandler);
 
