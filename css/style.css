@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .container {
     width: 700px;
     margin: 0 auto;
@@ -9,17 +14,16 @@ h1, .warning, .lang {
 }
 textarea {
     display: block;
-    width: 690px;
+    width: 100%;
     height: 200px;
-    margin: 10px auto 10px;
+    margin: 10px 0;
     padding: 10px;
     font-size: 18px;
     color: #444444;
 }
 .keyboard {
-    border: 2px solid #000000;
     border-radius: 5px;
-    background: #888888;
+    background: #9d9f9e;
     padding: 4px;
     width: 100%;
 }
@@ -32,17 +36,19 @@ textarea {
     width: 40px;
     height: 40px;
     border-radius: 5px;
-    border: none;
-    background: #444444;
-    color: #ffffff;
+    border: 1px solid #ffffff;
+    background: #728e72;
+    color: #000000;
     outline: none;
     transition: all .8s;
+    font-size: 17px;
+    padding: 0 3px;
 }
 .btn-double {
     width: 90px;
 }
 .btn-black {
-    background: #000000;
+    background: #9c9686;
 }
 .btn-space {
     width: 370px;
