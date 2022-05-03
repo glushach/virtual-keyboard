@@ -108,6 +108,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!e.target.classList.contains('output')) {
       e.preventDefault();
     }
+    console.log(e.target.id)
   }
   document.addEventListener('mousedown', mouseDownHandler);
 
