@@ -54,8 +54,10 @@ export function setLang(...codes) {
     pressed.clear(); // чтобы избежать "залипания" клавиши
   });
 
-  document.addEventListener('keydown', (event) => {
-    pressed.delete(event.code);
+  document.addEventListener('keydown', () => {
+    pressed.clear(); /* чтобы не было багов анимации
+        при переключении между левой и правой комбинации клавиш
+    */
   });
 }
 
