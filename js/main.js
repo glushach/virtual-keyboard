@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     } // and shift
 
-    charToTextarea(e); // вводить символы в textarea
+    charToTextarea(e.code); // вводить символы в textarea
     return null;
   }
   document.addEventListener('keydown', keyDownHandler);
@@ -79,6 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!e.target.classList.contains('output')) {
       e.preventDefault();
     }
+    charToTextarea(e.target.id); // вводить символы в textarea
 
     // const lang = localStorage.getItem('langKeyBoard');
     // const register = localStorage.getItem('register');

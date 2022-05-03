@@ -5,7 +5,7 @@ export default function charToTextarea(e) {
   const lang = localStorage.getItem('langKeyBoard');
   const register = localStorage.getItem('register');
 
-  const key = e.code; // very important
+  const key = e; // very important
   setAnimationSingle(key);
   let val = document.querySelector('textarea').value; // very important
   const start = document.querySelector('textarea').selectionStart;

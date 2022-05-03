@@ -2,7 +2,7 @@ export function setActiveClass(selector) {
   document.querySelector(`#${selector}`).classList.add('active');
 }
 export function setAnimationSingle(selector) {
-  const btn = document.querySelector(`#${selector}`);
+  const btn = document.getElementById(`${selector}`);
   if (btn) {
     btn.classList.add('transform-btn');
     btn.addEventListener('animationend', () => {
