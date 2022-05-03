@@ -70,14 +70,41 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!e.target.classList.contains('output')) {
       e.preventDefault();
     }
-    if (e.target.id) return setCapsLock(e.target.id);
+    if (e.target.id === 'CapsLock') {
+      if (localStorage.getItem('register') === 'shift') {
+        localStorage.setItem('register', 'capslock');
+        initKeyboard();
+        setActiveClass('CapsLock');
+      } else if (e.target.id === 'CapsLock') {
+        localStorage.setItem('register', 'unshift');
+        initKeyboard();
+      } else {
+        return setCapsLock(e.target.id);
+      }
+    }
     charToTextarea(e.target.id); // вводить символы в textarea
 
-    // const lang = localStorage.getItem('langKeyBoard');
-    // const register = localStorage.getItem('register');
-    //
-    // const key = e.target.id;
-    // console.log(e.target.id);
+    if (e.target.id === 'ShiftLeft' || e.target.id === 'ShiftRight') {
+      if (localStorage.getItem('register') === 'unshift') {
+        localStorage.setItem('register', 'shift');
+        initKeyboard();
+        setActiveClass(e.target.id);
+      } else if (localStorage.getItem('register') === 'shift') {
+        localStorage.setItem('register', 'unshift');
+        initKeyboard();
+      } else if (localStorage.getItem('register') === 'capslock') {
+        localStorage.setItem('register', 'capslock_shift');
+        initKeyboard();
+        setActiveClass('CapsLock');
+        setActiveClass(e.target.id);
+      } else if (localStorage.getItem('register') === 'capslock_shift') {
+        if (e.target.id === 'ShiftLeft' || e.target.id === 'ShiftRight') {
+          localStorage.setItem('register', 'capslock');
+          initKeyboard();
+          setActiveClass('CapsLock');
+        }
+      }
+    }
   }
   document.addEventListener('click', mouseClickHandler);
 
