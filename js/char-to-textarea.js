@@ -6,11 +6,11 @@ export default function charToTextarea(e) {
   const register = localStorage.getItem('register');
 
   const key = e.code; // very important
+  setAnimationSingle(key);
   let val = document.querySelector('textarea').value; // very important
   const start = document.querySelector('textarea').selectionStart;
 
   if (data[lang][register][key]) {
-    setAnimationSingle(key);
     if (start >= 0 && start <= val.length) {
       document.querySelector('textarea').value = val
         .slice(0, start) + data[lang][register][key] + val.slice(start, val.length);
@@ -18,7 +18,6 @@ export default function charToTextarea(e) {
       document.querySelector('textarea').selectionEnd = start + data[lang][register][key].length;
     }
   } else if (key === 'Backspace') {
-    setAnimationSingle(key);
     if (start > 0 && start <= val.length) {
       val = val.slice(0, start - 1) + val.slice(start, val.length);
       document.querySelector('textarea').value = val;
@@ -26,7 +25,6 @@ export default function charToTextarea(e) {
       document.querySelector('textarea').selectionEnd = start - 1;
     }
   } else if (key === 'Delete') {
-    setAnimationSingle(key);
     if (start >= 0 && start <= val.length - 1) {
       val = val.slice(0, start) + val.slice(start + 1, val.length);
       document.querySelector('textarea').value = val;
