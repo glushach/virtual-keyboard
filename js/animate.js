@@ -1,5 +1,12 @@
-export function setAnimatedSingle(selector) {
+export function setActiveClass(selector) {
   document.querySelector(`#${selector}`).classList.add('active');
+}
+export function setAnimationSingle(selector) {
+  const btn = document.querySelector(`#${selector}`);
+  btn.classList.add('transform-btn');
+  btn.addEventListener('animationend', () => {
+    btn.classList.remove('transform-btn');
+  });
 }
 export function setAnimationDouble(selector1, selector2) {
   document.querySelector(`#${selector1}`).classList.add('active');

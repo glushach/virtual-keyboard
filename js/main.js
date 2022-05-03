@@ -1,5 +1,5 @@
 import { setLang, initKeyboard } from './change-lang.js';
-import { setAnimatedSingle, setAnimationDouble } from './animate.js';
+import { setActiveClass, setAnimationDouble } from './animate.js';
 import charToTextarea from './char-to-textarea.js';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       initKeyboard();
       if (localStorage.getItem('register') === 'capslock') {
-        setAnimatedSingle('CapsLock');
+        setActiveClass('CapsLock');
       }
     } // and capsLock
 
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
       if (localStorage.getItem('register') === 'unshift') {
         localStorage.setItem('register', 'shift');
         initKeyboard();
-        setAnimatedSingle(e.code); // добавить класс у shift
+        setActiveClass(e.code); // добавить класс у shift
       } else if (localStorage.getItem('register') === 'capslock') {
         localStorage.setItem('register', 'capslock_shift');
         initKeyboard();
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
       } else if (localStorage.getItem('register') === 'capslock_shift') {
         localStorage.setItem('register', 'capslock');
         initKeyboard();
-        setAnimatedSingle('CapsLock'); // вернуть класс у capslock
+        setActiveClass('CapsLock'); // вернуть класс у capslock
       }
     } // and shift
   }
