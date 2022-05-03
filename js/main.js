@@ -61,26 +61,26 @@ window.addEventListener('DOMContentLoaded', () => {
     const register = localStorage.getItem('register');
 
     const key = e.code; // very important
-    let  value = document.querySelector('textarea').value; // very important
+    let val = document.querySelector('textarea').value; // very important
     const start = document.querySelector('textarea').selectionStart;
 
     if (data[lang][register][key]) {
-      if (start >= 0 && start <= value.length) {
-        document.querySelector('textarea').value = value
-          .slice(0, start) + data[lang][register][key] + value.slice(start, value.length),
-        document.querySelector('textarea').selectionStart = start + data[lang][register][key].length,
+      if (start >= 0 && start <= val.length) {
+        document.querySelector('textarea').value = val
+          .slice(0, start) + data[lang][register][key] + val.slice(start, val.length);
+        document.querySelector('textarea').selectionStart = start + data[lang][register][key].length;
         document.querySelector('textarea').selectionEnd = start + data[lang][register][key].length;
       }
     } else if (key === 'Backspace') {
-      start > 0 && start <= value
-        .length && (value = value.slice(0, start - 1) + value.slice(start, value.length),
-      document.querySelector('textarea').value = value,
+      start > 0 && start <= val
+        .length && (val = val.slice(0, start - 1) + val.slice(start, val.length),
+      document.querySelector('textarea').value = val,
       document.querySelector('textarea').selectionStart = start - 1,
       document.querySelector('textarea').selectionEnd = start - 1);
     } else if (key === 'Delete') {
-      start >= 0 && start <= value.length - 1
-      && (value = value.slice(0, start) + value.slice(start + 1, value.length),
-      document.querySelector('textarea').value = value,
+      start >= 0 && start <= val.length - 1
+      && (val = val.slice(0, start) + val.slice(start + 1, val.length),
+      document.querySelector('textarea').value = val,
       document.querySelector('textarea').selectionStart = start,
       document.querySelector('textarea').selectionEnd = start);
     }
