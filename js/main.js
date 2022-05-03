@@ -60,7 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const lang = localStorage.getItem('langKeyBoard');
     const register = localStorage.getItem('register');
 
-    const key = e.code // very important
+    const key = e.code; // very important
     let  value = document.querySelector('textarea').value; // very important
     const start = document.querySelector('textarea').selectionStart;
 

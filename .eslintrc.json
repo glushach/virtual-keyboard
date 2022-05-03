@@ -9,6 +9,13 @@
     "sourceType": "module"
   },
   "rules": {
-    "import/extensions": "off"
+    "import/extensions": [
+      "error",
+      {
+        "pattern": {
+          "js": "always"
+        }
+      }
+    ]
   }
 }
