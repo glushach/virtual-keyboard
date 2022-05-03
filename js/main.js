@@ -1,4 +1,5 @@
 import { setLang, initKeyboard } from './change-lang.js';
+import setCapsLock from './capslock.js';
 import { setActiveClass, setAnimationDouble } from './animate.js';
 import charToTextarea from './char-to-textarea.js';
 
@@ -27,17 +28,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function keyDownHandler(e) {
     e.preventDefault();
-    if (e.key === 'CapsLock') { // capsLock
-      if (localStorage.getItem('register') === 'unshift') {
-        localStorage.setItem('register', 'capslock');
-      } else if (localStorage.getItem('register') === 'capslock') {
-        localStorage.setItem('register', 'unshift');
-      }
-      initKeyboard();
-      if (localStorage.getItem('register') === 'capslock') {
-        setActiveClass('CapsLock');
-      }
-    } // and capsLock
 
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { // shift
       if (
@@ -62,6 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', keyDownHandler);
 
   function keyUpHandler(e) {
+    setCapsLock(e.key); // установить capslock
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { // shift
       if (localStorage.getItem('register') === 'shift') {
         localStorage.setItem('register', 'unshift');
@@ -79,6 +70,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!e.target.classList.contains('output')) {
       e.preventDefault();
     }
+    if (e.target.id) return setCapsLock(e.target.id);
     charToTextarea(e.target.id); // вводить символы в textarea
 
     // const lang = localStorage.getItem('langKeyBoard');
