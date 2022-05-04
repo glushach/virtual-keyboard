@@ -7,10 +7,19 @@ export default function setCapsLock(e) {
             localStorage.setItem('register', 'capslock');
         } else if (localStorage.getItem('register') === 'capslock') {
             localStorage.setItem('register', 'unshift');
+        } else if (localStorage.getItem('register') === 'shift') {
+            localStorage.setItem('register', 'capslock_shift');
+        } else if (localStorage.getItem('register') === 'capslock_shift') {
+            localStorage.setItem('register', 'shift');
         }
         initKeyboard();
         if (localStorage.getItem('register') === 'capslock') {
             setActiveClass('CapsLock');
+        } else if (localStorage.getItem('register') === 'capslock_shift') {
+            setActiveClass('CapsLock');
+            setActiveClass('ShiftLeft');
+        } else if (localStorage.getItem('register') === 'shift') {
+            setActiveClass('ShiftLeft');
         }
     }
 }

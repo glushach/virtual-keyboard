@@ -53,6 +53,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function keyUpHandler(e) {
     setCapsLock(e.key); // установить capslock
+
+    // установить shift
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { // shift
       if (localStorage.getItem('register') === 'shift') {
         localStorage.setItem('register', 'unshift');
