@@ -1,5 +1,6 @@
 import Render from './render.js';
 import data from './translate.js';
+import {setActiveClass} from "./animate.js";
 
 // Только комбинация CtrlLeft + AltLeft и CtrlRight + AltRight
 export function initKeyboard() {
@@ -59,6 +60,22 @@ export function setLang(...codes) {
         при переключении между левой и правой комбинации клавиш
     */
   });
+}
+
+
+// Смена языка при клике мышкой
+export function changeLangClick(e) {
+  // Перерисовываем язык
+  if (localStorage.getItem('langKeyBoard') === 'en') {
+    localStorage.setItem('langKeyBoard', 'ru');
+  } else {
+    localStorage.setItem('langKeyBoard', 'en');
+  }
+  initKeyboard();
+  document.querySelector(`#${e}`).classList.add('transform-btn');
+  if (localStorage.getItem('register') === 'shift') {
+    setActiveClass('ShiftLeft');
+  }
 }
 
 // npx eslint js/change-lang.js

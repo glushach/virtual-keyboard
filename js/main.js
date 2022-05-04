@@ -1,4 +1,4 @@
-import { setLang, initKeyboard } from './change-lang.js';
+import { setLang, initKeyboard, changeLangClick } from './change-lang.js';
 import setCapsLock from './capslock.js';
 import { setActiveClass, setAnimationDouble } from './animate.js';
 import charToTextarea from './char-to-textarea.js';
@@ -66,6 +66,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   document.addEventListener('keyup', keyUpHandler);
 
+  const ctrlAltClickLeft = new Set();
+  const ctrlAltClickRight = new Set();
   function mouseClickHandler(e) {
     if (!e.target.classList.contains('output')) {
       e.preventDefault();
@@ -97,14 +99,33 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    if (e.target.id === 'ControlLeft' ||
-        e.target.id === 'AltLeft' ||
-        e.target.id === 'AltRight' ||
-        e.target.id === 'ControlRight'
-    ) {
-      console.log(e.target.id)
-    }
+    // Обработака смены языка по клику на левую комбинацию клавиш
+    if (e.target.id === 'ControlLeft' || e.target.id === 'AltLeft') {
+      if (ctrlAltClickRight.size === 0) {
+        if (ctrlAltClickLeft.size <= 2 && (ctrlAltClickLeft.has(e.target.id) !== true)) {
+          ctrlAltClickLeft.add(e.target.id);
+          setActiveClass(e.target.id);
+        }
+        if (ctrlAltClickLeft.size === 2) {
+          ctrlAltClickLeft.clear();
+          changeLangClick(e.target.id);
+        }
+      }
+    } // end left
+    // Обработака смены языка по клику на правую комбинацию клавиш
+    if (e.target.id === 'AltRight' || e.target.id === 'ControlRight') {
+      if (ctrlAltClickLeft.size === 0) {
+        if (ctrlAltClickRight.size < 2 && (ctrlAltClickRight.has(e.target.id) !== true)) {
+          ctrlAltClickRight.add(e.target.id)
+          setActiveClass(e.target.id);
+        }
+        if (ctrlAltClickRight.size === 2) {
+          ctrlAltClickRight.clear();
+          changeLangClick(e.target.id);
+        }
+      }
 
+    } // end right
   }
   document.addEventListener('click', mouseClickHandler);
 
