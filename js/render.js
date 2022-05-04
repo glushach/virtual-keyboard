@@ -6,8 +6,6 @@ export default class Render {
   }
 
   render() {
-    console.log(this.obj[this.lang][this.case]);
-
     document.querySelector('.keyboard-wrap').innerHTML = `
     <div class="keyboard">
       <div class="keyboard--row">

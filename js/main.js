@@ -118,7 +118,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (e.target.id === 'AltRight' || e.target.id === 'ControlRight') {
       if (ctrlAltClickLeft.size === 0) {
         if (ctrlAltClickRight.size < 2 && (ctrlAltClickRight.has(e.target.id) !== true)) {
-          ctrlAltClickRight.add(e.target.id)
+          ctrlAltClickRight.add(e.target.id);
           setActiveClass(e.target.id);
         }
         if (ctrlAltClickRight.size === 2) {
@@ -126,7 +126,6 @@ window.addEventListener('DOMContentLoaded', () => {
           changeLangClick(e.target.id);
         }
       }
-
     } // end right
   }
   document.addEventListener('click', mouseClickHandler);

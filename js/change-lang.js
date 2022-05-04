@@ -1,6 +1,6 @@
 import Render from './render.js';
 import data from './translate.js';
-import {setActiveClass} from "./animate.js";
+import { setActiveClass } from './animate.js';
 
 // Только комбинация CtrlLeft + AltLeft и CtrlRight + AltRight
 export function initKeyboard() {
@@ -61,7 +61,6 @@ export function setLang(...codes) {
     */
   });
 }
-
 
 // Смена языка при клике мышкой
 export function changeLangClick(e) {
