@@ -70,20 +70,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!e.target.classList.contains('output')) {
       e.preventDefault();
     }
-    if (e.target.id === 'CapsLock') {
-      if (localStorage.getItem('register') === 'shift') {
-        localStorage.setItem('register', 'capslock');
-        initKeyboard();
-        setActiveClass('CapsLock');
-      } else if (e.target.id === 'CapsLock') {
-        localStorage.setItem('register', 'unshift');
-        initKeyboard();
-      } else {
-        return setCapsLock(e.target.id);
-      }
-    }
+
+    setCapsLock(e.target.id); // установить capslock на unshift и capslock
     charToTextarea(e.target.id); // вводить символы в textarea
 
+    // Обработка двух клавиш Shift только при клике по них
     if (e.target.id === 'ShiftLeft' || e.target.id === 'ShiftRight') {
       if (localStorage.getItem('register') === 'unshift') {
         localStorage.setItem('register', 'shift');
@@ -105,6 +96,15 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
+
+    if (e.target.id === 'ControlLeft' ||
+        e.target.id === 'AltLeft' ||
+        e.target.id === 'AltRight' ||
+        e.target.id === 'ControlRight'
+    ) {
+      console.log(e.target.id)
+    }
+
   }
   document.addEventListener('click', mouseClickHandler);
 
