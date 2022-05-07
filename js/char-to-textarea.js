@@ -11,6 +11,7 @@ export default function charToTextarea(e) {
   const start = document.querySelector('textarea').selectionStart;
 
   if (data[lang][register][key]) {
+    document.querySelector('.output').focus();
     if (start >= 0 && start <= val.length) {
       document.querySelector('textarea').value = val
         .slice(0, start) + data[lang][register][key] + val.slice(start, val.length);
