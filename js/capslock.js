@@ -24,5 +24,5 @@ export default function setCapsLock(e) {
   }
 }
 
-// npx eslint js/capslock.js - чтобы проверить на соответсвие из консоли
-// npx eslint js/capslock.js --fix - автоматически из консоли фиксить ошибки в данном файле
+// npx eslint js/capslock.js - check from console
+// npx eslint js/capslock.js --fix - fix from console

@@ -86,5 +86,5 @@ export default class Render {
   } // end method render
 }
 
-// npx eslint js/render.js - чтобы проверить на соответсвие из консоли
-// npx eslint js/render.js --fix - автоматически из консоли фиксить ошибки в данном файле
+// npx eslint js/render.js
+// npx eslint js/render.js --fix

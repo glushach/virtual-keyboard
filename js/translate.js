@@ -455,6 +455,6 @@ const data = {
 
 export default data;
 
-// npx eslint js/translate.js - чтобы проверить на соответсвие из консоли
+// npx eslint js/translate.js - check from console
 
-// npx eslint js/translate.js --fix - автоматически из консоли фиксить ошибки в данном файле
+// npx eslint js/translate.js --fix - fix bugs from console

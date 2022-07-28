@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
     'ControlRight',
     'AltRight',
   );
-  initKeyboard(); // формирование верстки при первой загрузки страници
+  initKeyboard();
 
   function keyDownHandler(e) {
     e.preventDefault();
@@ -38,23 +38,23 @@ window.addEventListener('DOMContentLoaded', () => {
       if (localStorage.getItem('register') === 'unshift') {
         localStorage.setItem('register', 'shift');
         initKeyboard();
-        setActiveClass(e.code); // добавить класс у shift
+        setActiveClass(e.code); // add class for shift
       } else if (localStorage.getItem('register') === 'capslock') {
         localStorage.setItem('register', 'capslock_shift');
         initKeyboard();
-        setAnimationDouble('CapsLock', e.code); // добавить класс у capslock и shift
+        setAnimationDouble('CapsLock', e.code); // add class for capslock и shift
       }
     } // and shift
 
-    charToTextarea(e.code); // вводить символы в textarea
+    charToTextarea(e.code); // put char in textarea
     return null;
   }
   document.addEventListener('keydown', keyDownHandler);
 
   function keyUpHandler(e) {
-    setCapsLock(e.key); // установить capslock
+    setCapsLock(e.key); // set capslock
 
-    // установить shift
+    // set shift
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { // shift
       if (localStorage.getItem('register') === 'shift') {
         localStorage.setItem('register', 'unshift');
@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
       } else if (localStorage.getItem('register') === 'capslock_shift') {
         localStorage.setItem('register', 'capslock');
         initKeyboard();
-        setActiveClass('CapsLock'); // вернуть класс у capslock
+        setActiveClass('CapsLock'); // return class for capslock
       }
     } // and shift
   }
@@ -75,10 +75,9 @@ window.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
     }
 
-    setCapsLock(e.target.id); // установить capslock на unshift и capslock
-    charToTextarea(e.target.id); // вводить символы в textarea
+    setCapsLock(e.target.id); // set capslock for unshift and capslock
+    charToTextarea(e.target.id); // put char in textarea
 
-    // Обработка двух клавиш Shift только при клике по них
     if (e.target.id === 'ShiftLeft' || e.target.id === 'ShiftRight') {
       if (localStorage.getItem('register') === 'unshift') {
         localStorage.setItem('register', 'shift');
@@ -101,7 +100,6 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Обработака смены языка по клику на левую комбинацию клавиш
     if (e.target.id === 'ControlLeft' || e.target.id === 'AltLeft') {
       if (ctrlAltClickRight.size === 0) {
         if (ctrlAltClickLeft.size <= 2 && (ctrlAltClickLeft.has(e.target.id) !== true)) {
@@ -114,7 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       }
     } // end left
-    // Обработака смены языка по клику на правую комбинацию клавиш
+
     if (e.target.id === 'AltRight' || e.target.id === 'ControlRight') {
       if (ctrlAltClickLeft.size === 0) {
         if (ctrlAltClickRight.size < 2 && (ctrlAltClickRight.has(e.target.id) !== true)) {
@@ -145,6 +143,6 @@ window.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mouseup', mouseUpHandler);
 }); // end DOMContentLoaded
 
-// npx eslint js/main.js - чтобы проверить на соответсвие из консоли
-// npx eslint js/main.js --fix - автоматически из консоли фиксить ошибки в данном файле
+// npx eslint js/main.js
+// npx eslint js/main.js --fix
 // npx eslint --fix

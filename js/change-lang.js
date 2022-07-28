@@ -2,7 +2,7 @@ import Render from './render.js';
 import data from './translate.js';
 import { setActiveClass } from './animate.js';
 
-// Только комбинация CtrlLeft + AltLeft и CtrlRight + AltRight
+// For CtrlLeft + AltLeft и CtrlRight + AltRight
 export function initKeyboard() {
   new Render(
     data,
@@ -12,7 +12,7 @@ export function initKeyboard() {
 }
 
 function setAnimateLang(pressed) {
-  if (pressed.size === 2) { // добавить анимацию
+  if (pressed.size === 2) { // add animate
     if (pressed.has('ControlLeft')) {
       const controlLeft = document.querySelector('#ControlLeft');
       const altLeft = document.querySelector('#AltLeft');
@@ -26,7 +26,7 @@ function setAnimateLang(pressed) {
     }
   }
 
-  // Если включен capslock
+  // If switch capslock
   if (localStorage.getItem('register') === 'capslock') {
     document.querySelector('#CapsLock').classList.add('active');
   }
@@ -38,12 +38,12 @@ export function setLang(...codes) {
     pressed.add(event.code);
 
     for (let i = 0; i < codes.length; i += 1) {
-      if (!pressed.has(codes[i])) { // все ли клавиши из набора нажаты?
+      if (!pressed.has(codes[i])) { // all key press?
         return;
       }
     }
 
-    // Перерисовываем язык
+    // drown lang
     if (localStorage.getItem('langKeyBoard') === 'en') {
       localStorage.setItem('langKeyBoard', 'ru');
     } else {
@@ -52,19 +52,16 @@ export function setLang(...codes) {
 
     initKeyboard();
     setAnimateLang(pressed);
-    pressed.clear(); // чтобы избежать "залипания" клавиши
+    pressed.clear();
   });
 
   document.addEventListener('keydown', () => {
-    pressed.clear(); /* чтобы не было багов анимации
-        при переключении между левой и правой комбинации клавиш
-    */
+    pressed.clear();
   });
 }
 
-// Смена языка при клике мышкой
+// switch lang click
 export function changeLangClick(e) {
-  // Перерисовываем язык
   if (localStorage.getItem('langKeyBoard') === 'en') {
     localStorage.setItem('langKeyBoard', 'ru');
   } else {
